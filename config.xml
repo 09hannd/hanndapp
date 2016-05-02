@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<widget xmlns = "http://www.w3.org/ns/widgets"
+xmlns:gap = "http://phonegap.com/ns/1.0"
+xmlns:cdv = "http://cordova.apache.org/ns/1.0"
+id = "com.phonegap.meep"
+version = "0.0.10" >
+
+<name>mstream</name>
+
+<description>
+streaming from yt.
+</description>
+
+<content src="index.html" />
+
+<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+<access origin="*" />
+<allow-navigation href="*" />
+<allow-intent href="*" />
+
+</widget>
