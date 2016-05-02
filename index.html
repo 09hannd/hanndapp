@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="bs/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="icons/material.css"/>
     <script src="bs/js/bootstrap.min.js"></script>
+    
+    <script src="cordova.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -34,12 +36,14 @@
                     <h4>Stressed Out</h4>
                     <p>Twenty One Pilots</p>
                     <h1>
+                        <i class="material-icons pull-left">equalizer</i>
                         <i class="material-icons">fast_rewind</i>
                         <script>
                         var show_pause = true;
                         </script>
                         <i class="material-icons" onclick="if(show_pause){this.innerHTML='pause';show_pause=false;}else{this.innerHTML='play_arrow';show_pause=true;};">play_arrow</i>
                         <i class="material-icons">fast_forward</i>
+                        <i class="material-icons pull-right">view_headline</i>
                     </h1>
                 </div>
             </div>
