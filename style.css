@@ -1,0 +1,32 @@
+.track-now-playing{
+    background: #f7f7f7;
+}
+
+.fixed-player-a{
+    background-image: url(img/art/blurryface.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.fixed-player-b{
+    color: white;
+    background: rgba(0,0,0,0.5);
+}
+
+.prog{
+    background: lime;
+    position: absolute;
+    left:0;
+    top:0;
+    height:4px;
+    width: 0%; 
+    -webkit-transition: all 0.1s ease-out;
+}
+
+#pp{
+    -webkit-transition: all 0.4s ease-out;
+    opacity: 0.1;
+}
+
+.track:hover{
+    background: rgba(121, 235, 130, 0.88);
+}

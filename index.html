@@ -1,47 +1,180 @@
 <html>
 <head>
     <title>HannD App!</title>
-    <meta name="viewport" content="width=device-width, inital-scale=1, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     
     <link rel="stylesheet" href="bs/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="icons/material.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    
     <script src="bs/js/bootstrap.min.js"></script>
     
     <script src="cordova.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1>msbeta</h1>
-                <hr>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div id="ytplayer"></div>
+        <script>
+            // Load the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var player;
+            function onYouTubePlayerAPIReady(){
+                player = new YT.Player('ytplayer',{
+                    videoId: 'pXRviuL6vMY',
+                    width: window.innerWidth,
+                    height: 100,
+                    playerVars: {
+                        controls: 0,
+                        modestbranding: 1,
+                        showinfo: 0,
+                    },
+                    events: {
+                        'onStateChange': stateChange,
+                        'onReady': readyPlayer
+                    }
+                });
+            }
+            
+            function readyPlayer(){
+                _el = document.getElementById("pp");
+                _el.style.opacity = 1;
+            }
+            
+            function updateProgressBar(){
+                total = player.getDuration();
+                curr = player.getCurrentTime();
+                percent = curr / total * 100;
+                document.getElementById("prog").style.width = Math.round(percent) + "%";
+            }
+            
+            var inter;
+            var sp = true;
+            function togglePP(){
+                _el = document.getElementById("pp");
+                if(sp){
+                    _el.innerHTML = "pause";
+                    player.playVideo();
+                    inter=window.setInterval(updateProgressBar,500);
+                } else {
+                    _el.innerHTML = "play_arrow";
+                    player.pauseVideo();
+                    window.clearInterval(inter);
+                }
+                sp = !sp;
+            }
+            
+            function stateChange(e){
+                if(e.data == 0){
+                    player.seekTo(0);
+                    document.getElementById("prog").style.width = "0%";
+                    togglePP();
+                }
+            };
+            
+        </script>
+    </nav>
+    <div class="container-fluid" style="height: 80%;overflow:scroll;">
+        <div class="row track">
+            <br>
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="icons/png/ic_audiotrack_black_24dp.png" width="64" height="64" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Sorry</h4>
+                        <p>Justin Beiber</p>
+                        <p>3 mins 20 secs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row track-now-playing">
+            <br>
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="icons/png/ic_audiotrack_black_24dp.png" width="64" height="64" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Stressed Out</h4>
+                        <p>Twenty One Pilots</p>
+                        <p>3 mins 45 secs <b class="pull-right">NOW PLAYING</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row track">
+            <br>
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="icons/png/ic_audiotrack_black_24dp.png" width="64" height="64" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Love Me Like You Do</h4>
+                        <p>Ellie Goulding</p>
+                        <p>4 mins 12 secs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row track">
+            <br>
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="icons/png/ic_audiotrack_black_24dp.png" width="64" height="64" alt="...">
+                        </a>
+                    </div>  
+                    <div class="media-body">
+                        <h4 class="media-heading">Stitches</h4>
+                        <p>Shawn Mendes</p>
+                        <p>3 mins 26 secs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row track">
+            <br>
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="icons/png/ic_audiotrack_black_24dp.png" width="64" height="64" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Wrecking Ball</h4>
+                        <p>Miley Cyrus</p>
+                        <p>3 mins 41 secs</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="navbar navbar-default navbar-fixed-bottom fixed-player-a">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                            <span class="sr-only">20% Played</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+            <span id="prog" class="prog"></span>
+            <div class="row fixed-player-b">
                 <div class="col-md-12 text-center">
                     <h4>Stressed Out</h4>
                     <p>Twenty One Pilots</p>
                     <h1>
                         <i class="material-icons pull-left">equalizer</i>
                         <i class="material-icons">fast_rewind</i>
-                        <script>
-                        var show_pause = true;
-                        </script>
-                        <i class="material-icons" onclick="if(show_pause){this.innerHTML='pause';show_pause=false;}else{this.innerHTML='play_arrow';show_pause=true;};">play_arrow</i>
+                        <i id="pp" class="material-icons" onclick="togglePP();">play_arrow</i>
                         <i class="material-icons">fast_forward</i>
                         <i class="material-icons pull-right">view_headline</i>
                     </h1>
@@ -50,6 +183,6 @@
         </div>
     </nav>
     
-    
+    <script src="script.js"></script>
 </body>
 </html>
